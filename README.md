@@ -122,21 +122,7 @@ Após registro, o usuário faz login e acessa o painel conforme seu nível.
 
 ## 🧑‍💻 Autor
 
-Desenvolvido por [Seu Nome]  
-📧 Contato: [seu@email.com](mailto:seu@email.com)  
-🔗 GitHub: [github.com/seuusuario](https://github.com/seuusuario)
-
----
-
-## 🖼️ Prévia (Opcional)
-
-Adicione aqui screenshots do sistema em funcionamento:
-
-```
-📸 Exemplo:
-[imagem da tela de login]
-[imagem do painel de irrigação]
-```
+Desenvolvido por [Eduardo]  
 
 ---
 
