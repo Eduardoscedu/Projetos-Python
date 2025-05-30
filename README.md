@@ -1,86 +1,143 @@
-🌱 Sistema de Login com Controle de Irrigação - Tkinter + SQLite
-Este projeto é uma aplicação gráfica (GUI) em Python que simula um Sistema de Login com Controle de Irrigação, utilizando Tkinter para a interface e SQLite para armazenamento dos dados. É ideal para fins educacionais, projetos de IoT simulados ou como base para sistemas com controle por acesso.
+# 💧 Sistema de Login com Controle de Irrigação
 
-🧩 Funcionalidades
-✅ Tela de login com autenticação
-✅ Tela de registro com validação por key de acesso
-✅ Painel principal com:
+Sistema desenvolvido em **Python + Tkinter + SQLite**, com autenticação por níveis de acesso e simulação de irrigação. Ideal para fins educacionais ou como base para projetos de automação.
 
-✅ Ligar / Desligar o sistema de irrigação
+---
 
-✅ Verificação de status da irrigação
+## 🚀 Funcionalidades
 
-✅ Identificação de nível de acesso do usuário
-✅ Interface amigável com status visual
-✅ Banco de dados criado e alimentado automaticamente
+- 🔐 Tela de **Login**
+- 📝 Tela de **Cadastro** com validação por **chave de acesso**
+- 📊 Painel do usuário com:
+  - ✅ Controle de irrigação (ligar/desligar)
+  - 🔍 Verificação de status (para níveis `DEV` e `ADM`)
+  - 🌡️ Indicador visual de status (verde/vermelho)
+- 🗂️ Banco de dados SQLite criado automaticamente
+- 🔑 Três níveis de acesso:
+  - `USUARIO`
+  - `DEV`
+  - `ADM`
 
-📋 Tecnologias Utilizadas
-Python 3
+---
 
-Tkinter (GUI)
+## 🖥️ Tecnologias Utilizadas
 
-SQLite3 (banco de dados local)
+- 🐍 Python 3
+- 🧰 Tkinter (interface gráfica)
+- 🗃️ SQLite (banco de dados local)
 
-📁 Estrutura do Projeto
-bash
-Copiar
-Editar
-├── main.py              # Inicia a aplicação Tkinter
-├── gui.py               # Interface e lógica de controle do sistema
-├── banco.py             # Conexão e criação do banco de dados
-└── sistema.db           # Arquivo gerado automaticamente com as tabelas
-🧠 Lógica de Funcionamento
-Acesso de Usuários
-Registro: o usuário precisa de uma key válida:
+---
 
-KEY-123 → acesso USUARIO
+## 📁 Estrutura de Arquivos
 
-KEY-456 → acesso DEV
+```
+📦 sistema-irrigacao/
+├── main.py          # Inicializa a aplicação
+├── gui.py           # Interface e lógica do sistema
+├── banco.py         # Conexão e criação do banco de dados
+└── sistema.db       # (Gerado automaticamente)
+```
 
-KEY-789 → acesso ADM
+---
 
-Login: após se registrar, o usuário pode fazer login e será redirecionado a um painel personalizado conforme seu nível de acesso.
+## 🧠 Como Funciona
 
-Painel de Irrigação
-Todos os usuários podem ativar/desativar a irrigação.
+### 🔑 Registro
 
-Níveis DEV e ADM têm acesso ao botão Verificação, que mostra o estado atual da irrigação.
+Usuários só podem se registrar se tiverem uma **key válida** (pré-cadastrada no banco):
 
-O status da irrigação é exibido em tempo real com cores:
+| Key       | Nível de Acesso |
+|-----------|-----------------|
+| KEY-123   | USUARIO         |
+| KEY-456   | DEV             |
+| KEY-789   | ADM             |
 
-Verde: Irrigação Ligada
+---
 
-Vermelho: Irrigação Desligada
+### 🔐 Login
 
-🧪 Banco de Dados
-Tabela usuarios
-Campo	Tipo	Descrição
-id	INTEGER	Chave primária
-nome	TEXT	Nome de usuário (único)
-senha	TEXT	Senha do usuário
-nivel_acesso	TEXT	Nível de acesso (USUARIO/DEV/ADM)
-botao_apertado	INTEGER	Estado do botão de irrigação
+Após registro, o usuário faz login e acessa o painel conforme seu nível.
 
-Tabela keys_acesso
-Campo	Tipo	Descrição
-id	INTEGER	Chave primária
-key	TEXT	Chave de acesso única
-nivel_acesso	TEXT	Nível vinculado à key
+---
 
-🚀 Como Executar o Projeto
-Clonar o repositório
+### 🧪 Painel de Controle
 
-bash
-Copiar
-Editar
-git clone https://github.com/seuusuario/sistema-irrigacao
-cd sistema-irrigacao
-Executar o projeto
+- **Todos os usuários**:
+  - Ligar ou desligar irrigação (altera o valor `botao_apertado`)
+- **Níveis DEV e ADM**:
+  - Verificam status atual (ligado/desligado)
+- **Status visual**:
+  - 🟢 Verde = Irrigação Ligada
+  - 🔴 Vermelho = Irrigação Desligada
 
-bash
-Copiar
-Editar
-python main.py
-Pronto! O sistema será aberto com a interface gráfica.
+---
 
+## 🗄️ Estrutura do Banco de Dados
 
+### Tabela `usuarios`
+
+| Campo          | Tipo     | Descrição                    |
+|----------------|----------|------------------------------|
+| id             | INTEGER  | Chave primária              |
+| nome           | TEXT     | Nome do usuário (único)     |
+| senha          | TEXT     | Senha do usuário            |
+| nivel_acesso   | TEXT     | USUARIO / DEV / ADM         |
+| botao_apertado | INTEGER  | 0 = desligado, 1 = ligado   |
+
+### Tabela `keys_acesso`
+
+| Campo        | Tipo     | Descrição                |
+|--------------|----------|--------------------------|
+| id           | INTEGER  | Chave primária          |
+| key          | TEXT     | Chave única de acesso   |
+| nivel_acesso | TEXT     | Nível associado à chave |
+
+---
+
+## ▶️ Como Executar
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seuusuario/sistema-irrigacao
+   cd sistema-irrigacao
+   ```
+
+2. **Execute o projeto:**
+   ```bash
+   python main.py
+   ```
+
+3. A aplicação abrirá com a interface gráfica.
+
+---
+
+## ✨ Melhorias Futuras
+
+- ⏱️ Timer de irrigação com duração personalizada
+- 🔐 Criptografia de senhas (com `hashlib`)
+- 🌎 Integração com dispositivos físicos (como Raspberry Pi)
+- 📈 Histórico de ações dos usuários
+
+---
+
+## 🧑‍💻 Autor
+
+Desenvolvido por [Seu Nome]  
+📧 Contato: [seu@email.com](mailto:seu@email.com)  
+🔗 GitHub: [github.com/seuusuario](https://github.com/seuusuario)
+
+---
+
+## 🖼️ Prévia (Opcional)
+
+Adicione aqui screenshots do sistema em funcionamento:
+
+```
+📸 Exemplo:
+[imagem da tela de login]
+[imagem do painel de irrigação]
+```
+
+---
+
+> ⭐ Dê uma estrela ⭐ neste projeto se ele te ajudou ou serviu de inspiração!
